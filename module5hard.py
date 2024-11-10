@@ -9,12 +9,14 @@ class User:
     def __str__(self):
         return f'{self.nickname}'
 
+
 class Video:
-    def __init__(self, title, duration, adult_mode=False):
+    def __init__(self, title: str, duration, adult_mode=False):
         self.title = title
         self.duration = duration
         self.time_now = 0
         self.adult_mode = adult_mode
+
 
 class UrTube:
     def __init__(self):
@@ -32,23 +34,23 @@ class UrTube:
         for user in self.users:
             list_nicknames.append(user.nickname)
         if nickname not in list_nicknames:
-            user = User(nickname, age, password)
+            user = User(nickname, password, age)
             self.users.append(user)
             self.log_in(nickname, password)
         else:
-            print(f"Пользователь {nickname} уже существует")
+            print(f'Пользователь {nickname} уже существует')
 
     def log_out(self):
         self.current_user = None
 
     def add(self, *videos: Video):
-        list_title = []
-        for video in self.videos:
-            list_title.append(video.title)
+         list_title = []
+         for video in self.videos:
+             list_title.append(video.title)
 
-        for video in videos:
-            if video.title not in list_title:
-                self.videos.append(video)
+         for video in videos:
+             if video.title not in list_title:
+                 self.videos.append(video)
 
     def get_videos(self, search_word):
         list_video = []
@@ -69,7 +71,7 @@ class UrTube:
                         video.time_now += 1
                         time.sleep(1)
                     video.time_now = 0
-                    print("Конец видео")
+                    print('Конец видео')
                 else:
                     print("Вам нет 18 лет, пожалуйста покинте страницу")
 
